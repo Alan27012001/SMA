@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YCFC55hl4Q5pP8UNrqFXVOam+1saxz989xP++JYgqhdAhXdetSHfdPOwBi/Z0TA7BaWg4+cbx69yk3ekedOFmw==",
+  "dgSpecHash": "SM75e2qtruaA76vs5ezHx5KbbCi4djyWpDDyc0vBk1ck+rytKBxJyWKewdknhwrL165Lrm69z8HQYBW4Ke/NVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alan\\Desktop\\SMA\\SMA\\SMA.csproj",
+  "projectFilePath": "C:\\Users\\Alan\\Desktop\\ProyectoSMA\\SMA\\SMA\\SMA\\SMA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alan\\.nuget\\packages\\jwt\\7.2.1\\jwt.7.2.1.nupkg.sha512",
     "C:\\Users\\Alan\\.nuget\\packages\\mailkit\\2.8.0\\mailkit.2.8.0.nupkg.sha512",

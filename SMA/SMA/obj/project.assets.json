@@ -9140,11 +9140,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alan\\Desktop\\SMA\\SMA\\SMA.csproj",
+      "projectUniqueName": "C:\\Users\\Alan\\Desktop\\ProyectoSMA\\SMA\\SMA\\SMA\\SMA.csproj",
       "projectName": "SMA",
-      "projectPath": "C:\\Users\\Alan\\Desktop\\SMA\\SMA\\SMA.csproj",
+      "projectPath": "C:\\Users\\Alan\\Desktop\\ProyectoSMA\\SMA\\SMA\\SMA\\SMA.csproj",
       "packagesPath": "C:\\Users\\Alan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alan\\Desktop\\SMA\\SMA\\obj\\",
+      "outputPath": "C:\\Users\\Alan\\Desktop\\ProyectoSMA\\SMA\\SMA\\SMA\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
