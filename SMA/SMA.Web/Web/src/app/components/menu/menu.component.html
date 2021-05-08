@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+  <span class="navbar-brand img-logo">
+    <img class="img-fluid" src="../../../assets/images/LogoMeitech.png" />
+  </span>
+  <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+    <div class="row w-100">
+      <!--Menú-->
+      <div class="col">
+        <div ngbDropdown class="d-inline-block ml-2" *ngFor="let modulo of menu; let i = index">
+          <button class="btn btn-outline-dark mt-1" id="dropdownModulo{{i}}" ngbDropdownToggle>{{'menu.modulos.' + modulo.llave | translate}}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownModulo{{i}}">
+            <button *ngFor="let pantalla of modulo.pantallas; let y = index"
+                    ngbDropdownItem
+                    routerLink="/{{pantalla.llave}}">
+              {{'menu.pantallas.' + pantalla.llave | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--Información de Usuario-->
+      <div class="col text-right">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-dark mt-1" id="dropdownUsuario" ngbDropdownToggle>
+            <i class="fas fa-user mr-2"></i>{{usuario.correo}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownUsuario">
+            <button ngbDropdownItem (click)="cambiarLenguaje('es')"><img class="img-fluid" width="20" src="assets/images/bandera_mex.jpg"/>&nbsp;Español</button>
+            <button ngbDropdownItem (click)="cambiarLenguaje('en')"><img class="img-fluid" width="20" src="assets/images/bandera_usa.png"/>&nbsp;English</button>
+            <button ngbDropdownItem (click)="logout()" class="mt-3"><i class="fa fa-sign-out-alt"></i>&nbsp;{{'botones.cerrarSesion' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

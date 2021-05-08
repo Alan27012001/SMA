@@ -1,0 +1,68 @@
+<form [formGroup]="rolForm" (ngSubmit)="Aceptar()">
+  <div class="modal-header">
+    <h4 class="modal-title">{{'rol.tituloFormulario' | translate}}</h4>
+    <button type="button" class="btn btn-link text-danger" (click)="activeModal.dismiss('Cross click')">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body form-row">
+    <div class="form-row col-md-6">
+      <div class="form-group col-md-12">
+        <label>{{'rol.nombre' | translate}}</label>
+        <input type="text" class="form-control" formControlName="nombre" maxlength="50" />
+        <div *ngIf="rolForm.get('nombre').errors && rolForm.get('nombre').dirty">
+          <p *ngIf="rolForm.get('nombre').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="rolForm.get('nombre').hasError('maxLength')">{{'mensajes.maximo50Caracteres' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label>{{'rol.descripcion' | translate}}</label>
+        <textarea rows="3" class="form-control" formControlName="descripcion" maxlength="250"></textarea>
+        <div *ngIf="rolForm.get('descripcion').errors && rolForm.get('descripcion').dirty">
+          <p *ngIf="rolForm.get('descripcion').hasError('maxLength')">{{'mensajes.maximo250Caracteres' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="activo">
+          <label class="form-check-label">
+            {{'rol.activo' | translate}}
+          </label>
+        </div>
+        <div *ngIf="rolForm.get('activo').errors && rolForm.get('activo').dirty">
+          <p *ngIf="rolForm.get('activo').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="form-row col-md-6 overflow-auto" style="max-height: 500px;">
+      <h5><strong>{{'rol.permisos' | translate}}</strong></h5>
+      <div class="form-row col-md-12" *ngFor="let m of menus;">
+        <hr class="bg-dark col-md-12" />
+        <div class="col-md-12">
+          <h6><strong>{{m.modulo}}</strong></h6>
+        </div>
+        <div class="form-row col-md-12" *ngFor="let p of m.pantallas;">
+          <div class="col-md-4">
+            <label>{{p.pantalla}}</label>
+          </div>
+          <div class="form-check col-md-8 text-right">
+            <label class="checkbox-inline ml-3" *ngFor="let per of p.permisos;">
+              <input type="checkbox" class="mr-1" [formControlName]="m.idModulo + '_' + p.idPantalla + '_' + per.idPermiso">{{per.permiso}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" *ngIf="_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cancelar' | translate}}<</button>
+    <button type="submit" class="btn btn-success" [disabled]="!rolForm.valid">{{'botones.aceptar' | translate}}</button>
+  </div>
+  <div class="modal-footer" *ngIf="!_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cerrar' | translate}}</button>
+  </div>
+</form>
+
+
+
+

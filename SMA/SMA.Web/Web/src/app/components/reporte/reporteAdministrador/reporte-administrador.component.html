@@ -1,0 +1,172 @@
+<app-menu></app-menu>
+<div class="container-fluid mt-3">
+  <h2>{{'reportesAdminisitrador.reportesAdminisitrador' | translate}}</h2>
+  <div class="table table-responsive mt-2">
+    <table class="table table-secondary">
+      <thead>
+        <tr>
+          <th colspan="12">
+            <div class="form-row">
+              <div class="col-md-2">
+                <input type="text" class="form-control mt-1" placeholder="{{'reportesAdminisitrador.folio' | translate}}" [(ngModel)]="filtroFolio" maxlength="10" />
+              </div>
+              <div class="col-md-2 pt-1">
+                <select class="custom-select" [(ngModel)]="filtroIdMotivo">
+                  <option [value]="0">{{'reportesAdminisitrador.motivo' | translate}}</option>
+                  <option *ngFor="let motivo of motivos" [ngValue]="motivo.id">{{motivo.motivo | translate}}</option>
+                </select>
+              </div>
+              <div class="col-md-2 pt-1">
+                <select class="custom-select" [(ngModel)]="filtroIdProyeto">
+                  <option [value]="0">{{'reportesAdminisitrador.proyecto' | translate}}</option>
+                  <option *ngFor="let proyecto of proyectos" [ngValue]="proyecto.id">{{proyecto.nombre | translate}}</option>
+                </select>
+              </div>
+              <div class="col-md-2 pt-1">
+                <select class="custom-select" [(ngModel)]="filtroIdEstatusReporte">
+                  <option [value]="0">{{'reportesAdminisitrador.estatusReporte' | translate}}</option>
+                  <option *ngFor="let estatus of estatus" [ngValue]="estatus.id">{{estatus.nombre | translate}}</option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-dark mt-1" (click)="Obtener()">{{'botones.buscar' | translate}}<i class="fas fa-search ml-1"></i></button>
+              </div>
+              <div class="col-md-3 text-right" *ngIf="_loginService.escritura">
+                <button type="button" class="btn btn-dark mt-1" (click)="Agregar()">{{'botones.nuevo' | translate}}<i class="fas fa-plus ml-1"></i></button>
+              </div>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th width="5%">#</th>
+          <th width="15%">
+            {{'reportesAdminisitrador.folio' | translate}}
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Folio' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Folio', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Folio' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Folio', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th width="15%">
+            {{'reportesAdminisitrador.motivo' | translate}}
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Motivo' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Motivo', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Motivo' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Motivo', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th width="20%">
+            {{'reportesAdminisitrador.proyecto' | translate}}
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Proyecto' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Proyecto', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Proyecto' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Proyecto', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th width="20%">
+            {{'reportesAdminisitrador.fechaReporte' | translate}}
+            <button type="button" class="btn btn-link text-white p-1"
+                    [ngClass]="ordenamiento.columna==='FechaReporte' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('FechaReporte', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link text-white p-1"
+                    [ngClass]="ordenamiento.columna==='FechaReporte' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('FechaReporte', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th width="20%">
+            {{'reportesAdminisitrador.estatusReporte' | translate}}
+            <button type="button" class="btn btn-link text-white p-1"
+                    [ngClass]="ordenamiento.columna==='EstatusReporte' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('EstatusReporte', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link text-white p-1"
+                    [ngClass]="ordenamiento.columna==='EstatusReporte' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('EstatusReporte', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th width="5%"></th>
+          <th *ngIf="_loginService.escritura" width="5%"></th>
+          <th *ngIf="_loginService.escritura" width="5%"></th>
+          <th *ngIf="!_loginService.escritura" width="5%"></th>
+        </tr>
+      </thead>
+      <tbody class="bg-white text-dark">
+        <tr *ngFor="let r of reportes;let i=index;">
+          <td>{{((paginacion.actual - 1) * paginacion.cantidad) + (i+1)}}</td>
+          <td>{{r.folio}}</td>
+          <td>{{r.motivo.motivo}}</td>
+          <td>{{r.proyecto.nombre}}</td>
+          <td>{{r.fechaReporte | date :'longDate'}}</td>
+          <td class="text-center texto-borde"  [style.background-color]="r.estatus.id === 1 ? '#00BB2D' : (r.estatus.id === 2 ? 'yellow' : '#EB2E2B')"><h4><span>{{r.estatus.nombre}}</span></h4></td>
+          <td *ngIf="_loginService.escritura">
+            <button type="button" title="Editar" class="btn btn-link text-dark" (click)="Editar(r.id)">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+          <td *ngIf="_loginService.escritura">
+            <button *ngIf="r.estatus.id === 1" title="Asignar Reporte" type="button" class="btn btn-link text-danger" (click)="AsignarReporte(r.id)">
+              <i class="fas fa-play"></i>
+            </button>
+          </td>
+          <td *ngIf="_loginService.escritura">
+            <button *ngIf="r.estatus.id === 2" title="Cerrar Reporte" type="button" class="btn btn-link text-danger" (click)="CerrarReporte(r.id)">
+              <i class="fas fa-power-off"></i>
+            </button>
+          </td>
+          <td *ngIf="!_loginService.escritura">
+            <button type="button" title="Consultar" class="btn btn-link text-dark" (click)="Editar(r.id)">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="text-dark">
+        <tr>
+          <th colspan="12">
+            <div class="form-row">
+              <div class="col-md-8">
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionIr(1)" *ngIf="paginacion.actual > 10">{{'paginacion.primera' | translate}}</button>
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionAnterior()" *ngIf="paginacion.actual > 1">{{'paginacion.anterior' | translate}}</button>
+                <button type="button" class="btn btn-dark mr-2" [ngClass]="p === paginacion.actual ? 'btn-outline-primary' : 'btn-primary'" (click)="PaginacionIr(p)" *ngFor="let p of paginacion.mostradas">{{p}}</button>
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionSiguiente()" *ngIf="paginacion.actual < paginacion.total">{{'paginacion.siguiente' | translate}}</button>
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionIr(paginacion.total)" *ngIf="(paginacion.total - paginacion.primera) > 10">{{'paginacion.ultima' | translate}}</button>
+              </div>
+              <div class="col-md-4 text-right">
+                {{'paginacion.registrosPagina' | translate}}
+                <select [(ngModel)]="paginacion.cantidad" (change)="Obtener()">
+                  <option selected value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+

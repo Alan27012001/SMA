@@ -1,0 +1,134 @@
+{
+  "menu": {
+    "modulos": {
+      "seguridad": "Seguridad",
+      "catalogo": "Catalogos",
+      "reporte": "Reportes"
+    },
+    "pantallas": {
+      "usuario": "Usuarios",
+      "rol": "Roles",
+      "proyecto": "Proyectos",
+      "motivo": "Motivos Reporte",
+      "reporte": "Reportes",
+      "reporteadministrador": "Reportes"
+    }
+  },
+  "botones": {
+    "iniciarSesion": "Iniciar Sesión",
+    "cerrarSesion": "Cerrar Sesión",
+    "nuevo": "Nuevo",
+    "buscar": "Buscar",
+    "editar": "Editar",
+    "eliminar": "Eliminar",
+    "consultar": "Consultar",
+    "aceptar": "Aceptar",
+    "cancelar": "Cancelar",
+    "guardar": "Guardar",
+    "cerrar": "Cerrar",
+    "seleccionar": "Seleccionar"
+  },
+  "login": {
+    "nombreSistema": "Sistema de Mesa de Ayuda Meibtech Solutions",
+    "usuario": "Usuario",
+    "contraseña": "Contraseña",
+    "recuperarContraseña": {
+      "liga": "¿Olvídaste tu Contraseña?",
+      "titulo": "Recuperar Contraseña",
+      "correo": "Correo"
+    }
+  },
+  "paginacion": {
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "primera": "Primera",
+    "ultima": "Ultima",
+    "registrosPagina": "Registros por Página"
+  },
+  "mensajes": {
+    "cargando": "Cargando",
+    "requerido": "Requerido",
+    "usuarioContraseñaRequerido": "Capture usuario y Contraseña",
+    "contraseñaNoConinciden": "Contraseñas no coinciden",
+    "maximo80Caracteres": "Debe tener máximo 80 caracteres",
+    "maximo50Caracteres": "Debe tener máximo 50 caracteres",
+    "maximo250Caracteres": "Debe tener máximo 250 caracteres",
+    "formatoValido": "No tiene un formato válido",
+    "formatoDireccionValida": "No es una dirección de correo válida",
+    "fechaValida": "Fecha no Valida"
+
+  },
+  "estatus": {
+    "activo": "Activo",
+    "inactivo": "Inactivo"
+  },
+  "usuarios": {
+    "usuarios": "Usuarios",
+    "tituloFormulario": "Usuario",
+    "nombre": "Nombre",
+    "apellidoPaterno": "Apellido Paterno",
+    "apellidoMaterno": "Apellido Materno",
+    "contraseña": "Contraseña",
+    "confirmarContraseña": "Confirmar Contraseña",
+    "rol": "Rol",
+    "activo": "Activo",
+    "correo": "Correo",
+    "fechaNacimiento": "Fecha de Nacimiento",
+    "estatus": "Estatus"
+  },
+  "rol": {
+    "roles": "Roles",
+    "tituloFormulario": "Rol",
+    "nombre": "Nombre",
+    "descripcion": "Descripción",
+    "estatus": "Estatus",
+    "activo": "Activo",
+    "permisos": "Permisos"
+  },
+  "proyectos": {
+    "proyectos": "Proyectos",
+    "tituloFormulario": "Proyecto",
+    "nombre": "Nombre",
+    "descripcion": "Descripción",
+    "activo": "Activo",
+    "estatus": "Estatus"
+  },
+  "motivos": {
+    "motivos": "Motivos Reportes",
+    "tituloFormulario": "Motivo",
+    "motivo": "Motivo",
+    "descripcion": "Descripción",
+    "activo": "Activo",
+    "estatus": "Estatus"
+  },
+  "reportesAdminisitrador": {
+    "reportesAdminisitrador": "Reportes",
+    "tituloFormulario": "Reporte",
+    "folio": "Folio",
+    "motivo": "Motivo",
+    "proyecto": "Proyecto",
+    "fechaReporte": "Fecha de Reporte",
+    "estatusReporte": "Estatus del Reporte",
+    "usuario": "Usuario",
+    "comentarioReporte": "Comentarios de Reporte",
+    "comentarioAsignacion": "Comentarios de Asignación Reporte",
+    "comentarioFinalizacion": "Comentarios de Finalización Reporte",
+    "fechaAsignacion": "Fecha de Asignación de Reporte",
+    "fechaFinalizacion": "Fecha de Finalización de Reporte"
+  },
+  "reportesUsuarios": {
+    "reportesUsuarios": "Reportes",
+    "tituloFormulario": "Reporte",
+    "folio": "Folio",
+    "motivo": "Motivo",
+    "proyecto": "Proyecto",
+    "fechaReporte": "Fecha de Reporte",
+    "estatusReporte": "Estatus del Reporte",
+    "usuario": "Usuario",
+    "comentarioReporte": "Comentarios de Reporte",
+    "comentarioAsignacion": "Comentarios de Asignación Reporte",
+    "comentarioFinalizacion": "Comentarios de Finalización Reporte",
+    "fechaAsignacion": "Fecha de Asignación de Reporte",
+    "fechaFinalizacion": "Fecha de Finalización de Reporte"
+  }
+}

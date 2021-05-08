@@ -1,0 +1,102 @@
+<form [formGroup]="usuarioForm" (ngSubmit)="Aceptar()" disabled>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'usuarios.tituloFormulario' | translate}}</h4>
+    <button type="button" class="btn btn-link text-danger" (click)="activeModal.dismiss('Cross click')">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body form-row">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.nombre' | translate}}</label>
+        <input type="text" class="form-control" formControlName="nombre" maxlength="80" />
+        <div *ngIf="usuarioForm.get('nombre').errors && usuarioForm.get('nombre').dirty">
+          <p *ngIf="usuarioForm.get('nombre').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="usuarioForm.get('nombre').hasError('maxLength')">{{'mensajes.maximo80Caracteres' | translate}}</p>
+          <p *ngIf="usuarioForm.get('nombre').hasError('pattern')">{{'mensajes.formatoValido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.apellidoPaterno' | translate}}</label>
+        <input type="text" class="form-control" formControlName="apellidoPaterno" maxlength="80" />
+        <div *ngIf="usuarioForm.get('apellidoPaterno').errors && usuarioForm.get('apellidoPaterno').dirty">
+          <p *ngIf="usuarioForm.get('apellidoPaterno').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="usuarioForm.get('apellidoPaterno').hasError('maxLength')">{{'mensajes.maximo80Caracteres' | translate}}</p>
+          <p *ngIf="usuarioForm.get('apellidoPaterno').hasError('pattern')">{{'mensajes.formatoValido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.apellidoMaterno' | translate}}</label>
+        <input type="text" class="form-control" formControlName="apellidoMaterno" maxlength="80" />
+        <div *ngIf="usuarioForm.get('apellidoMaterno').errors && usuarioForm.get('apellidoMaterno').dirty">
+          <p *ngIf="usuarioForm.get('apellidoMaterno').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="usuarioForm.get('apellidoMaterno').hasError('maxLength')">{{'mensajes.maximo80Caracteres' | translate}}</p>
+          <p *ngIf="usuarioForm.get('apellidoMaterno').hasError('pattern')">{{'mensajes.formatoValido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.correo' | translate}}</label>
+        <input type="text" class="form-control" formControlName="correo" maxlength="80" />
+        <div *ngIf="usuarioForm.get('correo').errors && usuarioForm.get('correo').dirty">
+          <p *ngIf="usuarioForm.get('correo').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="usuarioForm.get('correo').hasError('email')">{{'mensajes.formatoDireccionValida' | translate}}</p>
+          <p *ngIf="usuarioForm.get('correo').hasError('maxLength')">{{'mensajes.maximo80Caracteres' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.fechaNacimiento' | translate}}</label>
+        <input type="date" class="form-control" formControlName="fechaNacimiento" />
+        <div *ngIf="usuarioForm.get('fechaNacimiento').errors && usuarioForm.get('fechaNacimiento').dirty">
+          <p *ngIf="usuarioForm.get('fechaNacimiento').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="usuarioForm.get('fechaNacimiento').hasError('fechaMayor')">{{'mensajes.fechaValida' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.contraseña' | translate}}</label>
+        <input type="password" class="form-control" formControlName="contrasena" maxlength="50" />
+        <div *ngIf="usuarioForm.get('contrasena').errors && usuarioForm.get('contrasena').dirty">
+          <p *ngIf="usuarioForm.get('contrasena').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="usuarioForm.get('contrasena').hasError('maxLength')">{{'mensajes.maximo50Caracteres' | translate}}</p>
+          <p *ngIf="usuarioForm.get('contrasena').hasError('contrasenasNoCoinciden')">{{'mensajes.contraseñaNoConinciden' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.confirmarContraseña' | translate}}</label>
+        <input type="password" class="form-control" formControlName="confirmarContrasena" maxlength="50" />
+        <div *ngIf="usuarioForm.get('confirmarContrasena').errors && usuarioForm.get('confirmarContrasena').dirty">
+          <p *ngIf="usuarioForm.get('confirmarContrasena').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="usuarioForm.get('confirmarContrasena').hasError('maxLength')">{{'mensajes.maximo50Caracteres' | translate}}</p>
+          <p *ngIf="usuarioForm.get('confirmarContrasena').hasError('contrasenasNoCoinciden')">{{'mensajes.contraseñaNoConinciden' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'usuarios.rol' | translate}}</label>
+        <select multiple class="custom-select" formControlName="rol">
+          <option *ngFor="let rol of roles" [ngValue]="rol.id">{{rol.nombre}}</option>
+        </select>
+        <div *ngIf="usuarioForm.get('rol').errors && usuarioForm.get('rol').dirty">
+          <p *ngIf="usuarioForm.get('rol').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="activo">
+          <label class="form-check-label">
+            {{'usuarios.activo' | translate}}
+          </label>
+        </div>
+        <div *ngIf="usuarioForm.get('activo').errors && usuarioForm.get('activo').dirty">
+          <p *ngIf="usuarioForm.get('activo').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" *ngIf="_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cancelar' | translate}}</button>
+    <button type="submit" class="btn btn-success" [disabled]="!usuarioForm.valid">{{'botones.aceptar' | translate}}</button>
+  </div>
+  <div class="modal-footer" *ngIf="!_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cerrar' | translate}}</button>
+  </div>
+</form>
+

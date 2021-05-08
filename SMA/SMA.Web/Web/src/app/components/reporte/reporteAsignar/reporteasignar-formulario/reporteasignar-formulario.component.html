@@ -1,0 +1,59 @@
+<form [formGroup]="reporteAsginarForm" (ngSubmit)="Aceptar()" disabled>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'reportesAdminisitrador.tituloFormulario' | translate}}</h4>
+    <button type="button" class="btn btn-link text-danger" (click)="activeModal.dismiss('Cross click')">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body form-row">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4">
+        <label>{{'reportesAdminisitrador.usuario' | translate}}</label>
+        <select class="custom-select" formControlName="usuario">
+          <option value="">{{'botones.seleccionar' | translate}}</option>
+          <option *ngFor="let usuario of usuarios" [ngValue]="usuario.id">{{usuario.nombre}}</option>
+        </select>
+        <div *ngIf="reporteAsginarForm.get('usuario').errors && reporteAsginarForm.get('usuario').dirty">
+          <p *ngIf="reporteAsginarForm.get('usuario').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'reportesAdminisitrador.comentarioAsignacion' | translate}}</label>
+        <textarea type="text" class="form-control" formControlName="comentarioAsignacion" maxlength="250"></textarea>
+        <div *ngIf="reporteAsginarForm.get('comentarioAsignacion').errors && reporteAsginarForm.get('comentarioAsignacion').dirty">
+          <!--<p *ngIf="reporteAsginarForm.get('comentarioAsignacion').hasError('required')">{{'mensajes.requerido' | translate}}</p>-->
+          <p *ngIf="reporteAsginarForm.get('comentarioAsignacion').hasError('maxLength')">{{'mensajes.maximo250Caracteres' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'reportesAdminisitrador.fechaAsignacion' | translate}}</label>
+        <input type="date" class="form-control" formControlName="fechaAsignacion" />
+        <div *ngIf="reporteAsginarForm.get('fechaAsignacion').errors && reporteAsginarForm.get('fechaAsignacion').dirty">
+          <!--<p *ngIf="reporteAsginarForm.get('fechaAsignacion').hasError('required')">{{'mensajes.requerido' | translate}}</p>-->
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'reportesAdminisitrador.comentarioReporte' | translate}}</label>
+        <textarea type="text" class="form-control" formControlName="comentarioReporte" maxlength="250" readonly></textarea>
+        <div *ngIf="reporteAsginarForm.get('comentarioReporte').errors && reporteAsginarForm.get('comentarioReporte').dirty">
+          <p *ngIf="reporteAsginarForm.get('comentarioReporte').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="reporteAsginarForm.get('comentarioReporte').hasError('maxLength')">{{'mensajes.maximo250Caracteres' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'reportesAdminisitrador.fechaReporte' | translate}}</label>
+        <input type="date" class="form-control" formControlName="fechaReporte" readonly/>
+        <div *ngIf="reporteAsginarForm.get('fechaReporte').errors && reporteAsginarForm.get('fechaReporte').dirty">
+          <!--<p *ngIf="reporteForm.get('fechaReporte').hasError('required')">{{'mensajes.requerido' | translate}}</p>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" *ngIf="_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cancelar' | translate}}</button>
+    <button type="submit" class="btn btn-success" [disabled]="!reporteAsginarForm.valid">{{'botones.aceptar' | translate}}</button>
+  </div>
+  <div class="modal-footer" *ngIf="!_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cerrar' | translate}}</button>
+  </div>
+</form>

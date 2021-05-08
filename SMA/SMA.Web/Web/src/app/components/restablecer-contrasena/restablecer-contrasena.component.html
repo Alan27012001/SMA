@@ -1,0 +1,39 @@
+<div class="sidenav">
+  <div class="login-main-text">
+    <h2>Articulos<br> Administración de Articulos </h2>
+    <p>Administra tu negocio de manera sencilla</p>
+  </div>
+</div>
+<div class="main">
+  <div class="text-center">
+    <img class="img-fluid mt-5 h-100" src="assets/images/gruposikbalLogo.png" />
+  </div>
+  <form class="col-md-6 col-sm-12" [formGroup]="restablecerForm" (ngSubmit)="Aceptar()">
+    <div class="mt-5">
+      <div>
+        <div class="form-group">
+          <label>Nueva Contraseña</label>
+          <input type="password" class="form-control" placeholder="*********" maxlength="50" formControlName="contrasena">
+          <div *ngIf="restablecerForm.get('contrasena').errors && restablecerForm.get('contrasena').dirty">
+            <p *ngIf="restablecerForm.get('contrasena').hasError('required')">Requerido</p>
+            <p *ngIf="restablecerForm.get('contrasena').hasError('maxLength')">Debe tener máximo 50 caracteres</p>
+            <p *ngIf="restablecerForm.get('contrasena').hasError('contrasenasNoCoinciden')">Contraseña no coincide</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Confirmar Nueva Contraseña</label>
+          <input type="password" class="form-control" placeholder="*********" maxlength="50" formControlName="confirmarContrasena">
+          <div *ngIf="restablecerForm.get('confirmarContrasena').errors && restablecerForm.get('confirmarContrasena').dirty">
+            <p *ngIf="restablecerForm.get('confirmarContrasena').hasError('required')">Requerido</p>
+            <p *ngIf="restablecerForm.get('confirmarContrasena').hasError('maxLength')">Debe tener máximo 50 caracteres</p>
+            <p *ngIf="restablecerForm.get('confirmarContrasena').hasError('contrasenasNoCoinciden')">Contraseña no coincide</p>
+          </div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-secondary" (click)="Cancelar()">Cancelar</button>
+          <button type="submit" class="btn btn-black ml-2" [disabled]="!restablecerForm.valid">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,24 @@
+<form [formGroup]="recuperarForm" (ngSubmit)="Aceptar()">
+  <div class="modal-header">
+    <h4 class="modal-title">Recuperar Contraseña</h4>
+    <button type="button" class="btn btn-link text-danger" (click)="activeModal.dismiss('Cross click')">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body form-row">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-12">
+        <label>Correo</label>
+        <input type="text" class="form-control" formControlName="correo" maxlength="80" />
+        <div *ngIf="recuperarForm.get('correo').errors && recuperarForm.get('correo').dirty">
+          <p *ngIf="recuperarForm.get('correo').hasError('required')">Requerido</p>
+          <p *ngIf="recuperarForm.get('correo').hasError('email')">No es una dirección de correo válida</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">Cancelar</button>
+    <button type="submit" class="btn btn-success" [disabled]="!recuperarForm.valid">Aceptar</button>
+  </div>
+</form>

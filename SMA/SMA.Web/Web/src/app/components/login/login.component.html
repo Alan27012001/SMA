@@ -1,0 +1,33 @@
+<div class="sidenav">
+  <div class="login-main-text texto-color-login">
+    <h2><br /><strong>SMA</strong></h2>
+    <p>Sistema de Mesa de Ayuda Meibtech Solutions</p>
+  </div>
+</div>
+<div class="main">
+  <!--<div class="text-right">
+    <button type="button" class="btn btn-link" (click)="_loginService.cambiarIdioma('es-MX')"><img class="img-fluid" width="20" src="../../../assets/images/bandera_mex.jpg" />&nbsp;Español</button>
+    <button type="button" class="btn btn-link" (click)="_loginService.cambiarIdioma('en-US')"><img class="img-fluid" width="20" src="../../../assets/images/bandera_usa.png" />&nbsp;English</button>
+  </div>-->
+  <div class="text-center">
+    <img class="img-fluid mt-5 h-100" src="../../../assets/images/LogoMeitech.png" />
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div class="mt-5">
+      <div>
+        <div class="form-group">
+          <label><strong>Usuario</strong></label>
+          <input [(ngModel)]="usuario.correo" type="email" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label><strong>Contraseña</strong></label>
+          <input [(ngModel)]="usuario.contrasena" (keyup.enter)="login()" type="password" class="form-control" placeholder="*********">
+        </div>
+        <button type="submit" class="btn btn-dark" (click)="login()">Iniciar Sesión</button>
+        <div class="form-group mt-1">
+          <button type="button" class="btn btn-link p-0" (click)="recuperarContrasena()"><small>¿Olvidaste tu contraseña?</small></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

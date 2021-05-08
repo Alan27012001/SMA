@@ -1,0 +1,133 @@
+{
+  "menu": {
+    "modulos": {
+      "seguridad": "Security",
+      "catalogo": "Catalogs",
+      "reporte": "Reports"
+    },
+    "pantallas": {
+      "usuario": "Users",
+      "rol": "Roles",
+      "proyecto": "Projects",
+      "motivo": "Report Reasons",
+      "reporte": "Reports",
+      "reporteadministrador": "Reports"
+    }
+  },
+  "botones": {
+    "iniciarSesion": "Login",
+    "cerrarSesion": "Logout",
+    "nuevo": "New",
+    "buscar": "Search",
+    "editar": "Edit",
+    "eliminar": "Delete",
+    "consultar": "View",
+    "aceptar": "Ok",
+    "cancelar": "Cancel",
+    "guardar": "Save",
+    "cerrar": "Close",
+    "seleccionar": "to select"
+  },
+  "login": {
+    "nombreSistema": "MeibiTech Solutions Help Desk System",
+    "usuario": "User",
+    "contraseña": "Password",
+    "recuperarContraseña": {
+      "liga": "Did you forget your password?",
+      "titulo": "Recover password",
+      "correo": "Mail"
+    }
+  },
+  "paginacion": {
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "primera": "First",
+    "ultima": "Last",
+    "registrosPagina": "Records per Page"
+  },
+  "mensajes": {
+    "cargando": "Loading",
+    "requerido": "Required",
+    "usuarioContraseñaRequerido": "Enter username and password",
+    "contraseñaNoConinciden": "Passwords do not match",
+    "maximo80Caracteres": "Must have a maximum of 80 characters",
+    "maximo50Caracteres": "Must have a maximum of 50 characters",
+    "maximo250Caracteres": "Must have a maximum of 250 characters",
+    "formatoValido": "It does not have a valid format",
+    "formatoDireccionValida": "This is not a valid email address",
+    "fechaValida": "Invalid Date"
+  },
+  "estatus": {
+    "activo": "Active",
+    "inactivo": "Inactive"
+  },
+  "usuarios": {
+    "usuarios": "Users",
+    "tituloFormulario": "User",
+    "nombre": "Name",
+    "apellidoPaterno": "Last name",
+    "apellidoMaterno": "Mother's last name",
+    "contraseña": "Password",
+    "confirmarContraseña": "Confirm Password",
+    "rol": "Role",
+    "activo": "Active",
+    "correo": "Mail",
+    "fechaNacimiento": "Date of birth",
+    "estatus": "Status"
+  },
+  "rol": {
+    "roles": "Roles",
+    "tituloFormulario": "Rol",
+    "nombre": "Name",
+    "descripcion": "Description",
+    "estatus": "Status",
+    "activo": "Active",
+    "permisos": "Permissions"
+  },
+  "proyectos": {
+    "proyectos": "Projects",
+    "tituloFormulario": "Project",
+    "nombre": "Name",
+    "descripcion": "Description",
+    "activo": "Active",
+    "estatus": "Status"
+  },
+  "motivos": {
+    "motivos": "Report Reasons",
+    "tituloFormulario": "Reason",
+    "motivo": "Reason",
+    "descripcion": "Description",
+    "activo": "Active",
+    "estatus": "Status"
+  },
+  "reportesAdminisitrador": {
+    "reportesAdminisitrador": "Reports",
+    "tituloFormulario": "Report",
+    "folio": "Folio",
+    "motivo": "Reason",
+    "proyecto": "Project",
+    "fechaReporte": "Report date",
+    "estatusReporte": "Report Status",
+    "usuario": "User",
+    "comentarioReporte": "Report Comments",
+    "comentarioAsignacion": "Assignment Report Comments",
+    "comentarioFinalizacion": "Report Completion Comments",
+    "fechaAsignacion": "Report Assignment Date",
+    "fechaFinalizacion": "Report Completion Date"
+  },
+  "reportesUsuarios": {
+    "reportesUsuarios": "Reports",
+    "tituloFormulario": "Report",
+    "folio": "Folio",
+    "motivo": "Reason",
+    "proyecto": "Project",
+    "fechaReporte": "Report date",
+    "estatusReporte": "Report Status",
+    "usuario": "User",
+    "comentarioReporte": "Report Comments",
+    "comentarioAsignacion": "Assignment Report Comments",
+    "comentarioFinalizacion": "Report Completion Comments",
+    "fechaAsignacion": "Report Assignment Date",
+    "fechaFinalizacion": "Report Completion Date"
+  }
+}

@@ -1,0 +1,18 @@
+CREDENCIALES BASE DE DATOS
+
+Database server: den1.mssql8.gear.host
+
+Username:smafacpya
+
+Nombre Base de Datos: smafacpya
+
+password:Rg291I~G2_mL
+
+ActualizarModelos
+Scaffold-DbContext "Server=192.168.1.55;Database=SAC;User=name;Password=pass;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Modelos -force
+
+Ver
+Otras Ventanas
+Consola del Administrador de Paquetes
+Proyecto SMA
+Scaffold-DbContext "Server=den1.mssql8.gear.host;Database=smafacpya;User=smafacpya;Password=Rg291I~G2_mL;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Modelos -force

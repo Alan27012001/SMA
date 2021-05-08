@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Mensaje del sistema</h4>
+  <button type="button" class="btn btn-link text-danger" (click)="activeModal.dismiss('Cross click')">
+    <i class="fa fa-times"></i>
+  </button>
+</div>
+<div class="modal-body form-row">
+  <div class="col-md-11">
+    <p class="text-break">{{mensaje}}</p>
+  </div>
+  <div class="col-md-1 text-primary">
+    <i class="fas fa-info-circle fa-2x"></i>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Aceptar</button>
+</div>

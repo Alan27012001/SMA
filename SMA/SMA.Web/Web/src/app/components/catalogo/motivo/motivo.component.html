@@ -1,0 +1,123 @@
+<app-menu></app-menu>
+<div class="container-fluid mt-3">
+  <h2>{{'motivos.motivos' | translate}}</h2>
+  <div class="table table-responsive mt-2">
+    <table class="table table-secondary">
+      <thead>
+        <tr>
+          <th colspan="7">
+            <div class="form-row">
+              <div class="col-md-2">
+                <input type="text" class="form-control mt-1" placeholder="{{'motivos.motivo' | translate}}" [(ngModel)]="filtroMotivo" maxlength="750" />
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control mt-1" placeholder="{{'motivos.descripcion' | translate}}" [(ngModel)]="filtroDescripcion" maxlength="200" />
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-dark mt-1" (click)="Obtener()">{{'botones.buscar' | translate}}<i class="fas fa-search ml-1"></i></button>
+              </div>
+              <div class="col-md-5 text-right" *ngIf="_loginService.escritura">
+                <button type="button" class="btn btn-dark mt-1" (click)="Agregar()">{{'botones.nuevo' | translate}}<i class="fas fa-plus ml-1"></i></button>
+              </div>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th width="5%">#</th>
+          <th width="25%">
+            {{'motivos.motivo' | translate}}
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Motivo' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Motivo', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Motivo' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Motivo', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th width="30%">
+            {{'motivos.descripcion' | translate}}
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Descripcion' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Descripcion', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link p-1"
+                    [ngClass]="ordenamiento.columna==='Descripcion' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Descripcion', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th width="10%">
+            {{'motivos.estatus' | translate}}
+            <button type="button" class="btn btn-link text-white p-1"
+                    [ngClass]="ordenamiento.columna==='Activo' && !ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Activo', false)">
+              <i class="fas fa-caret-up"></i>
+            </button>
+            <button type="button" class="btn btn-link text-white p-1"
+                    [ngClass]="ordenamiento.columna==='Activo' && ordenamiento.reversa ? 'text-dark' : 'text-white'"
+                    (click)="Ordenar('Activo', true)">
+              <i class="fas fa-caret-down"></i>
+            </button>
+          </th>
+          <th *ngIf="_loginService.escritura" width="5%"></th>
+          <th *ngIf="_loginService.escritura" width="5%"></th>
+          <th *ngIf="!_loginService.escritura" width="10%"></th>
+        </tr>
+      </thead>
+      <tbody class="bg-white text-dark">
+        <tr *ngFor="let m of motivos;let i=index;">
+          <td>{{((paginacion.actual - 1) * paginacion.cantidad) + (i+1)}}</td>
+          <td>{{m.motivo}}</td>
+          <td>{{m.descripcion}}</td>
+          <td>{{m.activo ? 'Activo' : 'Inactivo'}}</td>
+          <td *ngIf="_loginService.escritura">
+            <button type="button" title="Editar" class="btn btn-link text-dark" (click)="Editar(m.id)">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+          <td *ngIf="_loginService.escritura">
+            <button *ngIf="m.activo" title="Eliminar" type="button" class="btn btn-link text-danger" (click)="Eliminar(m.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+          <td *ngIf="!_loginService.escritura">
+            <button type="button" title="Consultar" class="btn btn-link text-dark" (click)="Editar(m.id)">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="text-dark">
+        <tr>
+          <th colspan="12">
+            <div class="form-row">
+              <div class="col-md-8">
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionIr(1)" *ngIf="paginacion.actual > 10">{{'paginacion.primera' | translate}}</button>
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionAnterior()" *ngIf="paginacion.actual > 1">{{'paginacion.anterior' | translate}}</button>
+                <button type="button" class="btn btn-dark mr-2" [ngClass]="p === paginacion.actual ? 'btn-outline-primary' : 'btn-primary'" (click)="PaginacionIr(p)" *ngFor="let p of paginacion.mostradas">{{p}}</button>
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionSiguiente()" *ngIf="paginacion.actual < paginacion.total">{{'paginacion.siguiente' | translate}}</button>
+                <button type="button" class="btn btn-dark mr-2" (click)="PaginacionIr(paginacion.total)" *ngIf="(paginacion.total - paginacion.primera) > 10">{{'paginacion.ultima' | translate}}</button>
+              </div>
+              <div class="col-md-4 text-right">
+                {{'paginacion.registrosPagina' | translate}}
+                <select [(ngModel)]="paginacion.cantidad" (change)="Obtener()">
+                  <option selected value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+

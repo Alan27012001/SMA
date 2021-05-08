@@ -1,0 +1,56 @@
+<form [formGroup]="reporteForm" (ngSubmit)="Aceptar()" disabled>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'reportesUsuarios.tituloFormulario' | translate}}</h4>
+    <button type="button" class="btn btn-link text-danger" (click)="activeModal.dismiss('Cross click')">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body form-row">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4">
+        <label>{{'reportesUsuarios.motivo' | translate}}</label>
+        <select class="custom-select" formControlName="motivo">
+          <option value="">{{'botones.seleccionar' | translate}}</option>
+          <option *ngFor="let motivo of motivos" [ngValue]="motivo.id">{{motivo.motivo}}</option>
+        </select>
+        <div *ngIf="reporteForm.get('motivo').errors && reporteForm.get('motivo').dirty">
+          <p *ngIf="reporteForm.get('motivo').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'reportesUsuarios.proyecto' | translate}}</label>
+        <select class="custom-select" formControlName="proyecto">
+          <option value="">{{'botones.seleccionar' | translate}}</option>
+          <option *ngFor="let proyecto of proyectos" [ngValue]="proyecto.id">{{proyecto.nombre}}</option>
+        </select>
+        <div *ngIf="reporteForm.get('proyecto').errors && reporteForm.get('proyecto').dirty">
+          <p *ngIf="reporteForm.get('proyecto').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'reportesUsuarios.comentarioReporte' | translate}}</label>
+        <textarea type="text" class="form-control" formControlName="comentarioReporte" maxlength="250"></textarea>
+        <div *ngIf="reporteForm.get('comentarioReporte').errors && reporteForm.get('comentarioReporte').dirty">
+          <p *ngIf="reporteForm.get('comentarioReporte').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="reporteForm.get('comentarioReporte').hasError('maxLength')">{{'mensajes.maximo250Caracteres' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'reportesUsuarios.fechaReporte' | translate}}</label>
+        <input type="date" class="form-control" formControlName="fechaReporte"/>
+        <div *ngIf="reporteForm.get('fechaReporte').errors && reporteForm.get('fechaReporte').dirty">
+          <p *ngIf="reporteForm.get('fechaReporte').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" *ngIf="_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cancelar' | translate}}</button>
+    <button type="submit" class="btn btn-success" [disabled]="!reporteForm.valid">{{'botones.aceptar' | translate}}</button>
+  </div>
+  <div class="modal-footer" *ngIf="!_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cerrar' | translate}}</button>
+  </div>
+</form>
+
+

@@ -1,0 +1,50 @@
+<form [formGroup]="motivoForm" (ngSubmit)="Aceptar()" disabled>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'motivos.tituloFormulario' | translate}}</h4>
+    <button type="button" class="btn btn-link text-danger" (click)="activeModal.dismiss('Cross click')">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body form-row">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4">
+        <label>{{'motivos.motivo' | translate}}</label>
+        <input type="text" class="form-control" formControlName="motivo" maxlength="80" />
+        <div *ngIf="motivoForm.get('motivo').errors && motivoForm.get('motivo').dirty">
+          <p *ngIf="motivoForm.get('motivo').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="motivoForm.get('motivo').hasError('maxLength')">{{'mensajes.maximo80Caracteres' | translate}}</p>
+          <p *ngIf="motivoForm.get('motivo').hasError('pattern')">{{'mensajes.formatoValido' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>{{'motivos.descripcion' | translate}}</label>
+        <textarea type="text" class="form-control" formControlName="descripcion" maxlength="250"></textarea>
+        <div *ngIf="motivoForm.get('descripcion').errors && motivoForm.get('descripcion').dirty">
+          <p *ngIf="motivoForm.get('descripcion').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <p *ngIf="motivoForm.get('descripcion').hasError('maxLength')">{{'mensajes.maximo250Caracteres' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group col-md-4" *ngIf="motivo.id > 0 && !motivo.activo">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="activo">
+          <label class="form-check-label">
+            {{'motivos.activo' | translate}}
+          </label>
+        </div>
+        <div *ngIf="motivoForm.get('activo').errors && motivoForm.get('activo').dirty">
+          <p *ngIf="motivoForm.get('activo').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" *ngIf="_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cancelar' | translate}}</button>
+    <button type="submit" class="btn btn-success" [disabled]="!motivoForm.valid">{{'botones.aceptar' | translate}}</button>
+  </div>
+  <div class="modal-footer" *ngIf="!_loginService.escritura">
+    <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cerrar' | translate}}</button>
+  </div>
+</form>
+
+
+
