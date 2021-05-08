@@ -10,16 +10,16 @@
               <div class="col-md-2">
                 <input type="text" class="form-control mt-1" placeholder="{{'reportesUsuarios.folio' | translate}}" [(ngModel)]="filtroFolio" maxlength="10" />
               </div>
-              <div class="col-md-3">
+              <!--<div class="col-md-3">
                 <select class="custom-select" [(ngModel)]="filtroIdEstatusReporte">
                   <option [value]="0">{{'reportesUsuarios.estatusReporte' | translate}}</option>
                   <option *ngFor="let estatus of estatus" [ngValue]="estatus.id">{{estatus.nombre | translate}}</option>
                 </select>
-              </div>
+              </div>-->
               <div class="col-md-2">
                 <button type="button" class="btn btn-dark mt-1" (click)="Obtener()">{{'botones.buscar' | translate}}<i class="fas fa-search ml-1"></i></button>
               </div>
-              <div class="col-md-5 text-right" *ngIf="_loginService.escritura">
+              <div class="col-md-8 text-right" *ngIf="_loginService.escritura">
                 <button type="button" class="btn btn-dark mt-1" (click)="Agregar()">{{'botones.nuevo' | translate}}<i class="fas fa-plus ml-1"></i></button>
               </div>
             </div>
@@ -103,12 +103,12 @@
           <td>{{r.fechaReporte | date :'longDate'}}</td>
           <td class="text-center">{{r.fechaFinalizacion | date :'longDate'}}</td>
           <td class="text-center">{{r.estatus.nombre}}</td>
-          <td *ngIf="_loginService.escritura">
+          <!--<td *ngIf="_loginService.escritura">
             <button type="button" title="Editar" class="btn btn-link text-dark" (click)="Editar(r.id)">
               <i class="fas fa-edit"></i>
             </button>
-          </td>
-          <td *ngIf="!_loginService.escritura">
+          </td>-->
+          <td *ngIf="_loginService.escritura">
             <button type="button" title="Consultar" class="btn btn-link text-dark" (click)="Editar(r.id)">
               <i class="fas fa-eye"></i>
             </button>

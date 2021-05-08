@@ -99,3 +99,9 @@ body {
   color: black;
 }
 
+select[readonly] {
+  background: #eee; /*Simular campo inativo - Sugestão @GabrielRodrigues*/
+  pointer-events: none;
+  touch-action: none;
+}
+

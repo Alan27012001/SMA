@@ -46,7 +46,7 @@
   </div>
   <div class="modal-footer" *ngIf="_loginService.escritura">
     <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cancelar' | translate}}</button>
-    <button type="submit" class="btn btn-success" [disabled]="!reporteForm.valid">{{'botones.aceptar' | translate}}</button>
+    <button type="submit" class="btn btn-success" (click)="Cancelar()">{{'botones.aceptar' | translate}}</button>
   </div>
   <div class="modal-footer" *ngIf="!_loginService.escritura">
     <button type="button" class="btn btn-secondary" (click)="Cancelar()">{{'botones.cerrar' | translate}}</button>
