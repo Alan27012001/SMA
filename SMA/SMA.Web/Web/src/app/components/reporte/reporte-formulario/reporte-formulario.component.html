@@ -24,7 +24,7 @@
           <option *ngFor="let proyecto of proyectos" [ngValue]="proyecto.id">{{proyecto.nombre}}</option>
         </select>
         <div *ngIf="reporteForm.get('proyecto').errors && reporteForm.get('proyecto').dirty">
-          <p *ngIf="reporteForm.get('proyecto').hasError('required')">{{'mensajes.requerido' | translate}}</p>
+          <!--<p *ngIf="reporteForm.get('proyecto').hasError('required')">{{'mensajes.requerido' | translate}}</p>-->
         </div>
       </div>
       <div class="form-group col-md-4">

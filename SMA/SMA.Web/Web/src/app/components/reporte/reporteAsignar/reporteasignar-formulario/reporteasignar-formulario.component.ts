@@ -107,7 +107,7 @@ export class ReporteasignarFormularioComponent implements OnInit {
 
   //Metodos de Combos
   ObtenerUsuarios() {
-    this._usuarioService.ObtenerUsuarios('', '', false, 0, 0, '', false).subscribe(
+    this._usuarioService.ObtenerUsuariosAdministradores('', false, 0, 0, '', false).subscribe(
       response => {
         this.usuarios = response.resultados;
       },

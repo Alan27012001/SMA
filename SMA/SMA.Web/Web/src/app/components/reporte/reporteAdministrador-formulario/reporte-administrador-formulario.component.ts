@@ -100,7 +100,22 @@ export class ReporteAdministradorFormularioComponent implements OnInit {
   Guardar() {
     this._reporteService.GuardarReporteAdminstrador(this.reporte).subscribe(
       response => {
+        this.ObtenerFolio(response);
         this._mensajeService.Informacion(response);
+        this.activeModal.close('guardado');
+      },
+      error => {
+        if (!this._loginService.ManejarError(error))
+          return;
+      }
+    );
+  }
+
+  ObtenerFolio(folio: string) {
+    this._reporteService.ObtenerFolio(folio).subscribe(
+      response => {
+        var formato = 'Tu número de folio es: RP00';
+        this._mensajeService.Informacion(formato + response);
         this.activeModal.close('guardado');
       },
       error => {
@@ -137,7 +152,7 @@ export class ReporteAdministradorFormularioComponent implements OnInit {
   }
 
   ObtenerUsuarios() {
-    this._usuarioService.ObtenerUsuarios('', '', false, 0, 0, '', false).subscribe(
+    this._usuarioService.ObtenerUsuariosAdministradores('', false, 0, 0, '', false).subscribe(
       response => {
         this.usuarios = response.resultados;
       },

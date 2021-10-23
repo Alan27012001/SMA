@@ -14,6 +14,16 @@ export class ReporteService {
     this.url = Global.url;
   }
 
+  //Folio
+  ObtenerFolio(folio: string): any {
+    const folioParametro = new Parametro('folio', folio);
+
+    const parametros = [folioParametro];
+
+    return this._loginService.ServicioGet('Reporte/ObtenerFolio', parametros);
+  }
+  //Folio
+
   //Reportes del Administrador
   ObtenerReportesAdministrador(folio: string, motivo: number, proyecto: number, estatusreporte: number, paginacionActual: number, paginacionCantidad: number, columnaOrdenamiento: string, reversaOrdenamiento: boolean): any {
     const folioParametro = new Parametro('folio', folio);

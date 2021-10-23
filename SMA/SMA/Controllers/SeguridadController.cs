@@ -294,6 +294,65 @@ namespace SMA.Controllers
             }
         }
 
+     
+        [HttpGet, Authorize]
+        public IActionResult ObtenerUsuariosAdministradores(string nombre, bool todos, int numeroPaginacion, int cantidadPaginacion, string columnaOrdenamiento, bool reversaOrdenamiento)
+        {
+            using (var db = new smafacpyaContext())
+            {
+                var valido = ValidarLogin();
+                if (valido != HttpStatusCode.OK)
+                {
+                    if (valido == HttpStatusCode.Unauthorized)
+                        return Unauthorized(constantes.mensajes.sesionExpirada);
+                    else
+                        return BadRequest(constantes.mensajes.error);
+                }
+                var idRol = 1;
+                var usuarios = (from u in db.Usuario join ur in db.UsuarioRol on u.Id equals ur.IdUsuario where ur.IdRol == idRol select u); 
+
+                if (!string.IsNullOrWhiteSpace(nombre))
+                    usuarios = usuarios.Where(x => x.Nombre.Contains(nombre) || x.ApellidoPaterno.Contains(nombre) || x.ApellidoMaterno.Contains(nombre));
+                if (!todos)
+                    usuarios = usuarios.Where(x => x.Activo);
+
+                switch (columnaOrdenamiento)
+                {
+                    case "Nombre":
+                        if (reversaOrdenamiento)
+                            usuarios = usuarios.OrderByDescending(x => x.Nombre).ThenBy(x => x.ApellidoPaterno).ThenBy(x => x.ApellidoMaterno);
+                        else
+                            usuarios = usuarios.OrderBy(x => x.Nombre).ThenByDescending(x => x.ApellidoPaterno).ThenByDescending(x => x.ApellidoMaterno);
+                        break;
+                    case "Activo":
+                        if (reversaOrdenamiento)
+                            usuarios = usuarios.OrderByDescending(x => x.Activo);
+                        else
+                            usuarios = usuarios.OrderBy(x => x.Activo);
+                        break;
+                    default:
+                        if (reversaOrdenamiento)
+                            usuarios = usuarios.OrderByDescending(x => x.Nombre).ThenBy(x => x.ApellidoPaterno).ThenBy(x => x.ApellidoMaterno);
+                        else
+                            usuarios = usuarios.OrderBy(x => x.Nombre).ThenByDescending(x => x.ApellidoPaterno).ThenByDescending(x => x.ApellidoMaterno);
+                        break;
+                }
+
+                var lista = usuarios.Select(x => new UsuarioViewModel
+                {
+                    Id = x.Id,
+                    Nombre = x.Nombre,
+                    ApellidoPaterno = x.ApellidoPaterno,
+                    ApellidoMaterno = x.ApellidoMaterno,
+                    Correo = x.Correo,
+                    FechaNacimiento = x.FechaNacimiento,
+                    Activo = x.Activo
+                });
+
+                return Ok(PaginacionConsulta.ObtenerPaginacion(lista, numeroPaginacion, cantidadPaginacion));
+            }
+        }
+
         [HttpGet, Authorize]
         public IActionResult ObtenerUsuario(int id)
         {

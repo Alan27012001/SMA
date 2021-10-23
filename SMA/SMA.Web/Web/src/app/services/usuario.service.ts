@@ -37,6 +37,27 @@ export class UsuarioService {
     return this._loginService.ServicioGet('Seguridad/ObtenerUsuarios', parametros);
   }
 
+  ObtenerUsuariosAdministradores(nombre: string, todos: boolean, paginacionActual: number, paginacionCantidad: number, columnaOrdenamiento: string, reversaOrdenamiento: boolean): any {
+    const nombreParametro = new Parametro('nombre', nombre);
+    const todosParametro = new Parametro('todos', todos.toString());
+
+    const paginacionActualParametro = new Parametro('numeroPaginacion', paginacionActual.toString());
+    const paginacionCantidadParametro = new Parametro('cantidadPaginacion', paginacionCantidad.toString());
+    const columnaOrdenamientoParametro = new Parametro('columnaOrdenamiento', columnaOrdenamiento);
+    const reversaOrdenamientoParametro = new Parametro('reversaOrdenamiento', reversaOrdenamiento.toString());
+
+    const parametros = [
+      nombreParametro,
+      todosParametro,
+      paginacionActualParametro,
+      paginacionCantidadParametro,
+      columnaOrdenamientoParametro,
+      reversaOrdenamientoParametro
+    ];
+
+    return this._loginService.ServicioGet('Seguridad/ObtenerUsuariosAdministradores', parametros);
+  }
+
   ObtenerUsuario(id: number): any {
     const idParametro = new Parametro('id', id.toString());
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Reporte } from '../../../models/reporte';
 import { Estatus } from '../../../models/estatus';
@@ -43,7 +44,8 @@ export class ReporteFormularioComponent implements OnInit {
     private _proyectoService: ProyectoService,
     private _motivoService: MotivoService,
     private _estatusService: EstatusService,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private modalService: NgbModal  ) {
   }
 
   ngOnInit(): void {
@@ -82,7 +84,7 @@ export class ReporteFormularioComponent implements OnInit {
   CrearForm() {
     this.reporteForm = new FormGroup({
       motivo: new FormControl(this.reporte.motivo === null || this.reporte.motivo === undefined ? '' : this.reporte.motivo.id, [Validators.required]),
-      proyecto: new FormControl(this.reporte.proyecto === null || this.reporte.proyecto === undefined ? '' : this.reporte.proyecto.id, [Validators.required]),
+      proyecto: new FormControl(this.reporte.proyecto === null || this.reporte.proyecto === undefined ? '' : this.reporte.proyecto.id),
       comentarioReporte: new FormControl(this.reporte.comentarioReporte, [
         Validators.maxLength(250)
       ]),
@@ -97,6 +99,7 @@ export class ReporteFormularioComponent implements OnInit {
   Guardar() {
     this._reporteService.GuardarReporteUsuario(this.reporte).subscribe(
       response => {
+        this.ObtenerFolio(response);
         this._mensajeService.Informacion(response);
         this.activeModal.close('guardado');
       },
@@ -106,6 +109,21 @@ export class ReporteFormularioComponent implements OnInit {
       }
     );
   }
+
+  ObtenerFolio(folio: string) {
+    this._reporteService.ObtenerFolio(folio).subscribe(
+      response => {
+        var formato = 'Tu número de folio es: RP00';
+        this._mensajeService.Informacion(formato + response);
+        this.activeModal.close('guardado');
+      },
+      error => {
+        if (!this._loginService.ManejarError(error))
+          return;
+      }
+    );
+  }
+
   //Metodos Servicios
 
   //Metodos de Combos

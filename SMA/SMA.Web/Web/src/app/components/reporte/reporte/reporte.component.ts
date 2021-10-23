@@ -108,6 +108,7 @@ export class ReporteComponent implements OnInit {
       }
     );
   }
+
   //Metodos de CRUD
 
   //Metodos del combo

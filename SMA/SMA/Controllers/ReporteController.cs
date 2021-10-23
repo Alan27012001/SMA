@@ -25,6 +25,19 @@ namespace SMA.Controllers
 
         }
 
+        #region Folio
+        [HttpGet, Authorize]
+        public string ObtenerFolio()
+        {
+            using (var db = new smafacpyaContext())
+            {
+                var folio = db.Reporte.OrderByDescending(x => x.Id).First().Id.ToString();
+
+                return folio;
+            }
+        }
+        #endregion
+
         #region ReporteUsuario
         [HttpGet, Authorize]
         public IActionResult ObtenerReportesUsuario(string folio, int idEstatusReporte, int numeroPaginacion, int cantidadPaginacion, string columnaOrdenamiento, bool reversaOrdenamiento)
@@ -40,7 +53,8 @@ namespace SMA.Controllers
                     else
                         return BadRequest(constantes.mensajes.error);
                 }
-                var reportes = db.Reporte.Include(x => x.IdMotivoNavigation).AsNoTracking().Where(x => x.IdUsuarioAsignacion == idUsuario);
+                var reportes = (from r in db.Reporte join u in db.Usuario on r.IdUsuarioAsignacion equals u.Id join ur in db.UsuarioRol on u.Id equals ur.IdUsuario where ur.IdRol == 2 select r);
+                //var reportes = db.Reporte.Include(x => x.IdMotivoNavigation).AsNoTracking().Where(x => x.IdUsuarioAsignacion == idUsuario);
 
                 if (!string.IsNullOrWhiteSpace(folio))
                     reportes = reportes.Where(x => x.Folio.Contains(folio));
