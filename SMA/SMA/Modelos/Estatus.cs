@@ -15,5 +15,7 @@ namespace SMA.Modelos
         public string Llave { get; set; }
 
         public virtual ICollection<Reporte> Reporte { get; set; }
+
+        public string Prueba { get; set; }
     }
 }
